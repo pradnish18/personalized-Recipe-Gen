@@ -39,6 +39,10 @@
             background-color: #5B3A29;
             color: white;
             border: none;
+            width: fit-content;
+            height: 40px;
+            margin-top: 4px;
+            margin-left: 10px;
         }
         .search-btn:hover {
             background-color: #F5E1C8 !important; 
@@ -62,34 +66,22 @@
             width: 100%;
         }
         @keyframes scroll {
-            from { transform: translateX(200%); }
+            from { transform: translateX(100%); }
             to { transform: translateX(-100%); }
         }
 
-        /* video Section */
+        /* Video Section */
         .video-container {
-            
-            position: relative; /* Changed from fixed to relative */
+            position: relative;
             margin-left: 3%;
             width: 94%;
-            height: 75vh; /* Adjusted height */
-            overflow: hidden;
-            margin-top: 20px; /* Added margin for spacing */
-            z-index: -1;
-            border: 5px solid black; /* Solid black border */
-            border-radius: 10px;
-
-            /* width: 100%;
             height: 75vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             overflow: hidden;
-            margin-top: 50px;
-            z-index: -1; */
+            margin-top: 20px;
+            border: 5px solid black;
+            border-radius: 10px;
         }
         .video-container video {
-            
             position: absolute;
             top: 50%;
             left: 50%;
@@ -98,16 +90,13 @@
             min-height: 100%;
             width: auto;
             height: auto;
-            object-fit: cover; 
-
-            /*max-width: 100%;
-            height: auto;
-            object-fit: cover;*/
+            object-fit: cover;
         }
 
         /* Steps Section */
         .steps-container {
             margin-top: 5vh;
+            
         }
         .step-box {
             width: 100%;
@@ -117,12 +106,93 @@
             box-shadow: -10px 10px 10px rgba(0, 0, 0, 0.3);
             text-align: center;
         }
+
+        /* Search Input and Dropdown */
+        #myInput {
+            background-image: url('/css/searchicon.png');
+            background-position: 10px 12px;
+            background-repeat: no-repeat;
+            width: 100%;
+            font-size: 16px;
+            padding: 12px 20px 12px 40px;
+            border: 1px solid #ddd;
+            margin-bottom: 12px;
+            box-sizing: border-box; /* Ensures padding doesn’t affect width */
+        }
+        
+        #myUL {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: none;
+            position: absolute;
+            top: 100%; /* Aligns below the input */
+            background-color: #fff;
+            width: 100%; /* Matches input width */
+            max-height: 200px;
+            overflow-y: auto;
+            z-index: 1000;
+        }
+        
+        #myUL li a {
+            border: 1px solid #ddd;
+            margin-top: -1px;
+            background-color: #f6f6f6;
+            padding: 12px;
+            text-decoration: none;
+            font-size: 18px;
+            color: black;
+            display: block;
+            cursor: pointer;
+        }
+        
+        #myUL li a:hover:not(.header) {
+            background-color: #eee;
+        }
+
+        /* Selected Ingredients List */
+        #selectedIngredients {
+            list-style-type: none;
+            padding: 0;
+            margin: 12px 0 0 0; /* Moved margin to top for spacing */
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            width: 100%; /* Keeps it within container */
+        }
+        #selectedIngredients li {
+            background-color: #f6f6f6;
+            padding: 8px 12px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        #selectedIngredients li .remove-btn {
+            background: none;
+            border: none;
+            color: red;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        /* Container for search input and suggestions */
+        .search-bar{
+            border-radius: 10px;
+            padding: 8px;
+            border: 1px solid black;
+            width: 100%;
+        }
+        .search-container {
+            position: relative;
+            width: 100%;
+        }
     </style>
 </head>
 <body>
 
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light" id="home>
+    <nav class="navbar navbar-expand-lg navbar-light" id="home">
         <div class="container-fluid">
             <div class="d-flex align-items-center">
                 <img src="logo.png" alt="Logo" height="40" class="me-2"> 
@@ -130,8 +200,55 @@
             </div>
 
             <div class="d-flex mx-auto" style="width: 50%;">
-                <input class="form-control me-2 search-bar" type="search" placeholder="Enter Your Ingredients" aria-label="Search">
-                <button class="btn search-btn" type="submit">Search</button>
+                <div class="search-container">
+                    <input type="text" id="myInput" class="search-bar" onkeyup="myFunction()" placeholder="Search for ingredients..." title="Type in an ingredient">
+                    <ul id="myUL">
+                        <li><a>Aloo (Potato)</a></li>
+                        <li><a>Amchur (Dried Mango Powder)</a></li>
+                        <li><a>Ajwain (Carom Seeds)</a></li>
+                        <li><a>Basmati Rice</a></li>
+                        <li><a>Bitter Gourd (Karela)</a></li>
+                        <li><a>Black Mustard Seeds</a></li>
+                        <li><a>Cardamom (Elaichi)</a></li>
+                        <li><a>Coriander Powder</a></li>
+                        <li><a>Cumin Seeds (Jeera)</a></li>
+                        <li><a>Chickpeas (Chana)</a></li>
+                        <li><a>Chili Powder</a></li>
+                        <li><a>Coconut (Grated)</a></li>
+                        <li><a>Fenugreek Leaves (Methi)</a></li>
+                        <li><a>Garam Masala</a></li>
+                        <li><a>Ginger (Adrak)</a></li>
+                        <li><a>Garlic (Lahsun)</a></li>
+                        <li><a>Green Beans</a></li>
+                        <li><a>Green Chilies</a></li>
+                        <li><a>Lentils (Dal)</a></li>
+                        <li><a>Methi Seeds (Fenugreek Seeds)</a></li>
+                        <li><a>Mustard Oil</a></li>
+                        <li><a>Onion</a></li>
+                        <li><a>Paneer (Cottage Cheese)</a></li>
+                        <li><a>Peas (Matar)</a></li>
+                        <li><a>Potatoes (Aloo)</a></li>
+                        <li><a>Rice (Chawal)</a></li>
+                        <li><a>Salt</a></li>
+                        <li><a>Turmeric Powder (Haldi)</a></li>
+                        <li><a>Tomato</a></li>
+                        <li><a>Tamarind (Imli)</a></li>
+                        <li><a>Yogurt (Dahi)</a></li>
+                        <li><a>Zucchini</a></li>
+                        <li><a>Cabbage</a></li>
+                        <li><a>Cauliflower</a></li>
+                        <li><a>Spinach (Palak)</a></li>
+                        <li><a>Bell Pepper (Shimla Mirch)</a></li>
+                        <li><a>Curry Leaves</a></li>
+                        <li><a>Saffron (Kesar)</a></li>
+                        <li><a>Cilantro (Coriander Leaves)</a></li>
+                        <li><a>Pumpkin (Kaddu)</a></li>
+                        <li><a>Radish (Mooli)</a></li>
+                        <li><a>Sweet Potato (Shakarkandi)</a></li>
+                    </ul>
+                    <ul id="selectedIngredients"></ul>
+                </div>
+                <button class="btn search-btn" type="button" onclick="searchRecipes()">Search</button>
             </div>
 
             <div class="d-flex ms-auto" style="margin-right: 20px;">
@@ -146,7 +263,7 @@
         <div class="scroll-text"><h1>Welcome to <b>CookXpert</b></h1></div>
     </div>
 
-    <!-- Image Section -->
+    <!-- Video Section -->
     <div class="video-container">
         <video autoplay loop muted playsinline>
             <source src="Untitled design.mp4" type="video/mp4">
@@ -159,18 +276,17 @@
             <div class="col-md-5 mb-4">
                 <div class="step-box">
                     <h3>Step 1</h3>
-                    <p>Enter the ingredients you have in the search bar and submit them. If needed, you can also select your current mood, food cravings, and any dietary preferences for a more personalized experience.</p>
+                    <p>Enter at least 2 and up to 30 ingredients in the search bar. Click suggestions to autofill and add them.</p>
                 </div>
             </div>
             <div class="col-md-5">
                 <div class="step-box">
                     <h3>Step 2</h3>
-                    <p>Click on the dish you’d like to cook to view the ingredients and step-by-step cooking process.</p>
+                    <p>Click the Search button to find recipes based on your selected ingredients.</p>
                 </div>
             </div>
         </div>
     </div>
-
 
     <footer class="bg-warning-subtle text-black text-center py-3" id="footer">
         <div class="container">
@@ -182,5 +298,82 @@
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
+    <!-- Custom JS -->
+    <script>
+        let selectedIngredients = [];
+
+        function myFunction() {
+            const input = document.getElementById("myInput");
+            const filter = input.value.toUpperCase();
+            const ul = document.getElementById("myUL");
+            const li = ul.getElementsByTagName("li");
+
+            if (filter.length > 0) {
+                ul.style.display = "block";
+            } else {
+                ul.style.display = "none";
+                return;
+            }
+
+            for (let i = 0; i < li.length; i++) {
+                const a = li[i].getElementsByTagName("a")[0];
+                const txtValue = a.textContent || a.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    li[i].style.display = "";
+                } else {
+                    li[i].style.display = "none";
+                }
+            }
+        }
+
+        function addIngredient(ingredient) {
+            if (selectedIngredients.length >= 30) {
+                alert("Maximum limit of 30 ingredients reached!");
+                return;
+            }
+            if (!selectedIngredients.includes(ingredient)) {
+                selectedIngredients.push(ingredient);
+                updateSelectedIngredients();
+            }
+            document.getElementById("myInput").value = ""; // Clear input
+            document.getElementById("myUL").style.display = "none"; // Hide dropdown
+        }
+
+        function removeIngredient(ingredient) {
+            selectedIngredients = selectedIngredients.filter(item => item !== ingredient);
+            updateSelectedIngredients();
+        }
+
+        function updateSelectedIngredients() {
+            const list = document.getElementById("selectedIngredients");
+            list.innerHTML = "";
+            selectedIngredients.forEach(ingredient => {
+                const li = document.createElement("li");
+                li.innerHTML = `${ingredient} <button class="remove-btn" onclick="removeIngredient('${ingredient}')">x</button>`;
+                list.appendChild(li);
+            });
+        }
+
+        function searchRecipes() {
+            if (selectedIngredients.length < 2) {
+                alert("Please select at least 2 ingredients!");
+                return;
+            }
+            alert(`Searching recipes with: ${selectedIngredients.join(", ")}`);
+            // Add backend API call here for actual recipe search
+            setTimeout(() => {
+                window.location.href = "explore.html";
+            }, 500); // 500ms delay
+        }
+
+        // Add click event to suggestions
+        document.querySelectorAll("#myUL li a").forEach(item => {
+            item.addEventListener("click", function() {
+                const ingredient = this.textContent || this.innerText;
+                document.getElementById("myInput").value = ingredient; // Autofill input
+                addIngredient(ingredient); // Add to selected list
+            });
+        });
+    </script>
 </body>
-</html> 
+</html>
