@@ -245,6 +245,29 @@
                         <li><a>Pumpkin (Kaddu)</a></li>
                         <li><a>Radish (Mooli)</a></li>
                         <li><a>Sweet Potato (Shakarkandi)</a></li>
+                        <li><a>Broccoli</a></li>
+                        <li><a>Carrot</a></li>
+                        <li><a>Eggplant (Brinjal)</a></li>
+                        <li><a>Beetroot</a></li>
+                        <li><a>Cucumber</a></li>
+                        <li><a>Green Peppers</a></li>
+                        <li><a>Zucchini</a></li>
+                        <li><a>Asafoetida (Hing)</a></li>
+                        <li><a>Nutmeg (Jaiphal)</a></li>
+                        <li><a>Cloves (Laung)</a></li>
+                        <li><a>Bay Leaves (Tej Patta)</a></li>
+                        <li><a>Sesame Seeds (Til)</a></li>
+                        <li><a>Popcorn</a></li>
+                        <li><a>Pine Nuts</a></li>
+                        <li><a>Walnuts</a></li>
+                        <li><a>Peppercorns (Kali Mirch)</a></li>
+                        <li><a>Vanilla Extract</a></li>
+                        <li><a>Honey</a></li>
+                        <li><a>Olive Oil</a></li>
+                        <li><a>Sugar</a></li>
+                        <li><a>Vinegar</a></li>
+                        <li><a>Chili Flakes</a></li>
+                        <li><a>Sea Salt</a></li>
                     </ul>
                     <ul id="selectedIngredients"></ul>
                 </div>
@@ -288,10 +311,71 @@
         </div>
     </div>
 
-    <footer class="bg-warning-subtle text-black text-center py-3" id="footer">
+    <footer class="bg-warning-subtle text-black text-center py-4" id="footer">
         <div class="container">
-            <p class="mb-0">Contact us: <a href="mailto:cookXpert@gmail.com" class="text-black text-decoration-none">cookXpert@gmail.com</a></p>
-            <p class="mb-0">Phone: +91 9876543210</p>
+            <div class="row">
+                <div class="col-md-4 mb-3 mb-md-0">
+                    <h5 class="fw-bold">Contact Us</h5>
+                    <p class="mb-1">Email: <a href="mailto:cookXpert@gmail.com" class="text-black text-decoration-none">cookXpert@gmail.com</a></p>
+                    <p class="mb-0">Phone: +91 9876543210</p>
+                </div>
+                <div class="col-md-4 mb-3 mb-md-0">
+                    <h5 class="fw-bold">About CookXpert</h5>
+                    <p class="mb-0 small">Bringing culinary excellence to your kitchen since 2023. Explore, cook, and savor delicious recipes with us!</p>
+                </div>
+                <div class="col-md-4">
+                    <h5 class="fw-bold">Connect</h5>
+                    <button class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#feedbackModal">Give Feedback</button>
+                    <div>
+                        <a href="#" class="text-black text-decoration-none me-2">Privacy Policy</a> |
+                        <a href="#" class="text-black text-decoration-none ms-2">Terms of Service</a>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-3">
+            <p class="mb-0 small">© 2025 CookXpert. All rights reserved.</p>
+        </div>
+    
+        <!-- Feedback Modal -->
+        <div class="modal fade" id="feedbackModal" tabindex="-1" aria-labelledby="feedbackModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="feedbackModalLabel">We Value Your Feedback</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="feedbackForm">
+                            <div class="mb-3">
+                                <label for="name" class="form-label fw-bold">Name (Optional)</label>
+                                <input type="text" class="form-control" id="name" placeholder="Enter your name">
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label fw-bold">Email (Optional)</label>
+                                <input type="email" class="form-control" id="email" placeholder="Enter your email">
+                            </div>
+                            <div class="mb-3">
+                                <label for="rating" class="form-label fw-bold">Rate Your Experience</label>
+                                <select class="form-select" id="rating" required>
+                                    <option value="">Select rating</option>
+                                    <option value="5">5 - Excellent</option>
+                                    <option value="4">4 - Very Good</option>
+                                    <option value="3">3 - Good</option>
+                                    <option value="2">2 - Fair</option>
+                                    <option value="1">1 - Poor</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="comments" class="form-label fw-bold">Comments</label>
+                                <textarea class="form-control" id="comments" rows="4" placeholder="Tell us about your experience..." required></textarea>
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" class="btn" style="background-color: #5B3A29; color: white;">Submit Feedback</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
     </footer>
 
@@ -371,6 +455,15 @@
                 addIngredient(this.textContent || this.innerText); // Add to selected list
             });
         });
+
+        // Add feedback form handling
+        document.getElementById('feedbackForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your feedback!');
+            this.reset();
+            bootstrap.Modal.getInstance(document.getElementById('feedbackModal')).hide();
+        });
+        
     </script>
 </body>
 </html>
