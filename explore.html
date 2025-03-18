@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explore Recipes</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fffbec;
+        }
+        /* Navbar Styling */
+        .navbar {
+            background-color: black !important; 
+        }
+        .navbar-brand {
+            font-size: 1.5rem;
+            color: white !important;
+        }
+        .nav-link {
+            color: white !important;
+            font-size: 1.1rem;
+        }
+        .nav-link:hover {
+            color: #ffad49 !important;
+        }
+        
+        .category-card {
+            cursor: pointer;
+            transition: transform 0.3s;
+            background-color: #dfdaca;
+        }
+        
+        .category-card:hover {
+            transform: scale(1.05);
+        }
+        
+        .card-title{
+            display: flex;
+        }
+        .card img {
+            height: 200px;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .col-md-4{
+            margin-top: 10px;
+        }
+        
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light" id="home">
+        <div class="container-fluid">
+            <div class="d-flex align-items-center">
+                <img src="logo.png" alt="Logo" height="40" class="me-2"> 
+                <span class="navbar-brand">CookXpert</span>
+            </div>
+
+
+            <div class="d-flex ms-auto" style="margin-right: 20px;">
+                <a class="nav-link me-3 active" href="#index.html">Home</a>
+                <a class="nav-link" href="#footer">Contact Us</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5 pt-5">
+        <h2 class="text-center">Your Recipe Book</h2>
+        <div class="row mt-4">
+            <div class="col-md-4">
+                <div class="card category-card" onclick="showRecipes('recipe1')">
+                    <img src="indian.jpg" class="card-img-top" alt="Indian Recipes">
+                    <div class="card-body text-center">
+                        <h6 class="card-title">Paneer Butter Masala</h6>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card category-card" onclick="showRecipes('recipe2')">
+                    <img src="desserts.jpg" class="card-img-top" alt="Desserts">
+                    <div class="card-body text-center">
+                        <h6 class="card-title">cake</h6>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card category-card" onclick="showRecipes('recipe3')">
+                    <img src="maincourse.jpg" class="card-img-top" alt="Main Course">
+                    <div class="card-body text-center">
+                        <h6 class="card-title">chicken curry</h6>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card category-card" onclick="showRecipes('recipe4')">
+                    <img src="snacks.jpg" class="card-img-top" alt="Snacks">
+                    <div class="card-body text-center">
+                        <h6 class="card-title">Snacks</h6>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card category-card" onclick="showRecipes('recipe5')">
+                    <img src="salads.jpg" class="card-img-top" alt="Salads">
+                    <div class="card-body text-center">
+                        <h6 class="card-title">Salads</h6>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card category-card" onclick="showRecipes('recipe6')">
+                    <img src="beverages.jpg" class="card-img-top" alt="Beverages">
+                    <div class="card-body text-center">
+                        <h6 class="card-title">Beverages</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="recipe-container" class="container mt-5"></div>
+
+    <script src="explore.js"></script>
+</body>
+</html>
