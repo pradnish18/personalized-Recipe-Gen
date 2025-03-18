@@ -318,22 +318,19 @@
             for (let i = 0; i < li.length; i++) {
                 const a = li[i].getElementsByTagName("a")[0];
                 const txtValue = a.textContent || a.innerText;
-                if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                    li[i].style.display = "";
-                } else {
-                    li[i].style.display = "none";
-                }
+                li[i].style.display = txtValue.toUpperCase().includes(filter) ? "" : "none";
             }
         }
 
+        // Updated addIngredient to prevent duplicates
         function addIngredient(ingredient) {
-            if (selectedIngredients.length >= 30) {
-                alert("Maximum limit of 30 ingredients reached!");
-                return;
-            }
             if (!selectedIngredients.includes(ingredient)) {
-                selectedIngredients.push(ingredient);
-                updateSelectedIngredients();
+                if (selectedIngredients.length < 30) {
+                    selectedIngredients.push(ingredient);
+                    updateSelectedIngredients();
+                } else {
+                    alert("Maximum limit of 30 ingredients reached!");
+                }
             }
             document.getElementById("myInput").value = ""; // Clear input
             document.getElementById("myUL").style.display = "none"; // Hide dropdown
@@ -349,7 +346,9 @@
             list.innerHTML = "";
             selectedIngredients.forEach(ingredient => {
                 const li = document.createElement("li");
-                li.innerHTML = `${ingredient} <button class="remove-btn" onclick="removeIngredient('${ingredient}')">x</button>`;
+                li.innerHTML = `
+                    ${ingredient} 
+                    <button class="remove-btn" onclick="removeIngredient('${ingredient}')">x</button>`;
                 list.appendChild(li);
             });
         }
@@ -366,12 +365,10 @@
             }, 500); // 500ms delay
         }
 
-        // Add click event to suggestions
+        // Add click events to suggestions
         document.querySelectorAll("#myUL li a").forEach(item => {
             item.addEventListener("click", function() {
-                const ingredient = this.textContent || this.innerText;
-                document.getElementById("myInput").value = ingredient; // Autofill input
-                addIngredient(ingredient); // Add to selected list
+                addIngredient(this.textContent || this.innerText); // Add to selected list
             });
         });
     </script>
